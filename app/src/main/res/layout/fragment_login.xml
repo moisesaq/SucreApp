@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:moi="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.apaza.moises.sucreapp.fragment.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewSmall"
+            android:text="Connect"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginMaxGlobal"
+            android:orientation="vertical">
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/lb_login_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/paddingMediumGlobal"
+                android:paddingBottom="@dimen/paddingMediumGlobal"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/marginMinGlobal"/>
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/b_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginMinGlobal"/>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextViewSmall"
+            android:text="Access with email"
+            android:layout_marginTop="@dimen/marginMaxGlobal"/>
+
+        <com.technorides.technoridesandroidpassenger.ui.View.InputTextView
+            android:id="@+id/itv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            moi:iconImage="@mipmap/ic_email_grey600_24dp"
+            moi:hint="@string/email"
+            moi:errorEnabled="true"
+            android:text="barto@technorides.com"
+            android:inputType="textEmailAddress"/>
+
+        <com.technorides.technoridesandroidpassenger.ui.View.InputTextView
+            android:id="@+id/itv_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            moi:iconImage="@mipmap/ic_lock_grey600_24dp"
+            moi:hint="@string/password"
+            moi:errorEnabled="true"
+            android:text="asdasd"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/login"
+            style="@style/SucreAppButton"
+            android:layout_marginTop="@dimen/marginMaxGlobal"
+            android:text="login" />
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            style="@style/TextViewSmall"
+            android:text="Forgot password"
+            android:layout_marginTop="@dimen/marginMediumGlobal"
+            android:background="?selectableItemBackground"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+</LinearLayout>
