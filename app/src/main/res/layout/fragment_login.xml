@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:moi="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_margin="@dimen/marginMediumGlobal"
     tools:context="com.apaza.moises.sucreapp.fragment.LoginFragment">
 
     <LinearLayout
@@ -19,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/marginMaxGlobal"
+            android:layout_margin="@dimen/marginMinGlobal"
             android:orientation="vertical">
 
             <com.facebook.login.widget.LoginButton
@@ -44,7 +45,7 @@
             android:text="Access with email"
             android:layout_marginTop="@dimen/marginMaxGlobal"/>
 
-        <com.technorides.technoridesandroidpassenger.ui.View.InputTextView
+        <com.apaza.moises.sucreapp.InputTextView
             android:id="@+id/itv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +55,7 @@
             android:text="barto@technorides.com"
             android:inputType="textEmailAddress"/>
 
-        <com.technorides.technoridesandroidpassenger.ui.View.InputTextView
+        <com.apaza.moises.sucreapp.InputTextView
             android:id="@+id/itv_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +66,7 @@
             android:inputType="textPassword"/>
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/b_login"
             style="@style/SucreAppButton"
             android:layout_marginTop="@dimen/marginMaxGlobal"
             android:text="login" />
