@@ -25,11 +25,11 @@ public class PlacesServiceApiImpl implements PlacesServiceApi{
 
     @Override
     public void getPlace(String placeId, PlacesServiceCallback<Place> callback) {
-
+        callback.onLoaded(PLACES_SERVICE_DATA.get(placeId));
     }
 
     @Override
     public void savePlace(Place place) {
-
+        PLACES_SERVICE_DATA.put(place.getId(), place);
     }
 }

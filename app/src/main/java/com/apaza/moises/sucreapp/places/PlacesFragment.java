@@ -3,18 +3,24 @@ package com.apaza.moises.sucreapp.places;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.apaza.moises.sucreapp.R;
 import com.apaza.moises.sucreapp.addplace.AddPlaceActivity;
 import com.apaza.moises.sucreapp.data.Place;
+import com.apaza.moises.sucreapp.data.PlaceRepositories;
+import com.apaza.moises.sucreapp.data.PlacesServiceApiImpl;
 import com.apaza.moises.sucreapp.placedetail.PlaceDetailActivity;
+import com.apaza.moises.sucreapp.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,37 +28,72 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PlacesFragment extends Fragment implements PlacesContract.View{
+public class PlacesFragment extends Fragment implements PlacesContract.View, PlacesAdapter.PlaceItemListener{
 
+    private static final String TAG = PlacesFragment.class.getSimpleName();
     private static final int REQUEST_ADD_PLACE = 1;
 
     private PlacesContract.Presenter mPresenter;
     private PlacesAdapter mPlacesAdapter;
 
+    @BindView(R.id.refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.places_list) RecyclerView recyclerView;
+    @BindView(R.id.fab) FloatingActionButton fab;
+
     public static PlacesFragment newInstance(){
         return new PlacesFragment();
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPlacesAdapter = new PlacesAdapter(new ArrayList<Place>(), mItemListener);
-        //mPresenter = new
+        PlacesServiceApiImpl placesServiceApi = new PlacesServiceApiImpl();
+        mPlacesAdapter = new PlacesAdapter(new ArrayList<Place>(), this);
+        mPresenter = new PlacesPresenter(this, PlaceRepositories.getInstance(placesServiceApi));
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View root = inflater.inflate(R.layout.fragment_places, container, false);
+        ButterKnife.bind(this, root);
+        setUp();
+        return root;
+    }
+
+    private void setUp(){
+        recyclerView.setAdapter(mPlacesAdapter);
+        int numColumns = getContext().getResources().getInteger(R.integer.num_places_columns);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numColumns));
+
+        fab.setImageResource(R.drawable.ic_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.addNewPlace();
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.loadPlaces(true);
+                Utils.showToast("Refresh");
+            }
+        });
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        mPresenter.loadPlaces(false);
     }
 
     @Override
@@ -60,24 +101,17 @@ public class PlacesFragment extends Fragment implements PlacesContract.View{
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    PlaceItemListener mItemListener = new PlaceItemListener() {
-        @Override
-        public void onPlaceClick(Place place) {
-            mPresenter.openPlaceDetails(place);
-        }
-    };
-
     @Override
     public void setProgressIndicator(final boolean active) {
         if(getView() == null)
             return;
 
-        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout)getView().findViewById(R.id.refresh_layout);
-
-        refreshLayout.post(new Runnable() {
+        //refreshLayout.setRefreshing(false);
+        swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                refreshLayout.setRefreshing(active);
+                swipeRefreshLayout.setRefreshing(active);
+                Log.d(TAG, " TEST >>>> ????");
             }
         });
     }
@@ -99,66 +133,9 @@ public class PlacesFragment extends Fragment implements PlacesContract.View{
         startActivity(intent);
     }
 
-
-    public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewHolder>{
-
-        private List<Place> mPlaceList;
-        private PlaceItemListener mPlaceItemListener;
-
-        public PlacesAdapter(List<Place> places, PlaceItemListener itemListener){
-            this.mPlaceList = places;
-            mPlaceItemListener = itemListener;
-        }
-        @Override
-        public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View placeView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_place, parent, false);
-            return new PlaceViewHolder(placeView, mPlaceItemListener);
-        }
-
-        @Override
-        public void onBindViewHolder(PlaceViewHolder holder, int position) {
-            Place place = mPlaceList.get(position);
-
-            holder.mTitle.setText(place.getTitle());
-            holder.mDescription.setText(place.getDescription());
-        }
-
-        @Override
-        public int getItemCount() {
-            if(mPlaceList.size() > 0)
-                return mPlaceList.size();
-            return 0;
-        }
-
-        public Place getItem(int position){
-            return mPlaceList.get(position);
-        }
-
-        public void addItems(List<Place> places){
-            mPlaceList.addAll(places);
-            notifyDataSetChanged();
-        }
-
-        public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-            @BindView(R.id.tv_place_title) TextView mTitle;
-            @BindView(R.id.tv_place_description) TextView mDescription;
-
-            private PlaceItemListener mPlaceItemListener;
-
-            public PlaceViewHolder(View view, PlaceItemListener listener){
-                super(view);
-                ButterKnife.bind(this, view);
-                this.mPlaceItemListener = listener;
-            }
-            @Override
-            public void onClick(View view) {
-                mPlaceItemListener.onPlaceClick(getItem(getAdapterPosition()));
-            }
-        }
-    }
-
-    public interface PlaceItemListener{
-        void onPlaceClick(Place place);
+    /*LISTENER ADAPTER*/
+    @Override
+    public void onPlaceClick(Place place) {
+        mPresenter.openPlaceDetails(place);
     }
 }
