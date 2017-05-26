@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.apaza.moises.sucreapp.data.Place;
+import com.apaza.moises.sucreapp.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MAIN ACTIVITY";
+    private static final String TAG = MainActivity.class.getSimpleName();
     private TextView tvName;
 
     private EditText etName, etAddress;
