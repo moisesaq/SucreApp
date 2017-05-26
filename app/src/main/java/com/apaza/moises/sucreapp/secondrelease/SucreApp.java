@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp;
+package com.apaza.moises.sucreapp.secondrelease;
 
 import android.app.Application;
 

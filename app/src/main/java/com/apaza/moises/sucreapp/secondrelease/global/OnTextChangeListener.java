@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp.global;
+package com.apaza.moises.sucreapp.secondrelease.global;
 
 import android.text.Editable;
 import android.text.TextWatcher;

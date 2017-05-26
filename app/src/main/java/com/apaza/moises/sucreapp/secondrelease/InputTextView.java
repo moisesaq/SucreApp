@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp.customview;
+package com.apaza.moises.sucreapp.secondrelease;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.apaza.moises.sucreapp.R;
-import com.apaza.moises.sucreapp.global.OnTextChangeListener;
-import com.apaza.moises.sucreapp.global.SavedState;
+import com.apaza.moises.sucreapp.secondrelease.global.OnTextChangeListener;
+import com.apaza.moises.sucreapp.secondrelease.global.SavedState;
 
 import java.util.regex.Pattern;
 

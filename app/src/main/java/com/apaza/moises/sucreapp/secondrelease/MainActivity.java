@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp;
+package com.apaza.moises.sucreapp.secondrelease;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.apaza.moises.sucreapp.data.Place;
 import com.apaza.moises.sucreapp.R;
+import com.apaza.moises.sucreapp.data.Place;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

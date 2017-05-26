@@ -100,7 +100,7 @@ public class PlacesFragment extends Fragment implements PlacesContract.View{
     }
 
 
-    private class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewHolder>{
+    public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewHolder>{
 
         private List<Place> mPlaceList;
         private PlaceItemListener mPlaceItemListener;

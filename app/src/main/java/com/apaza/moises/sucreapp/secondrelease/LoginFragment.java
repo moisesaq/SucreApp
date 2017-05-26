@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp;
+package com.apaza.moises.sucreapp.secondrelease;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.apaza.moises.sucreapp.customview.InputTextView;
 import com.apaza.moises.sucreapp.R;
-import com.apaza.moises.sucreapp.global.Global;
-import com.apaza.moises.sucreapp.login.MainActivity;
+import com.apaza.moises.sucreapp.secondrelease.global.Global;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;

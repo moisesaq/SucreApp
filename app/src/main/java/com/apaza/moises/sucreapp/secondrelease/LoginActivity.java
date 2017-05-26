@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp;
+package com.apaza.moises.sucreapp.secondrelease;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,9 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.apaza.moises.sucreapp.R;
-import com.apaza.moises.sucreapp.global.Global;
-import com.apaza.moises.sucreapp.login.LoginFragment;
-import com.apaza.moises.sucreapp.login.SplashFragment;
+import com.apaza.moises.sucreapp.secondrelease.global.Global;
 
 public class LoginActivity extends AppCompatActivity implements SplashFragment.OnSplashFragmentListener, LoginFragment.OnLoginFragmentListener {
 

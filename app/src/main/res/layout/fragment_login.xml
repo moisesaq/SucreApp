@@ -45,7 +45,7 @@
             android:text="Access with email"
             android:layout_marginTop="@dimen/marginMaxGlobal"/>
 
-        <com.apaza.moises.sucreapp.InputTextView
+        <com.apaza.moises.sucreapp.secondrelease.InputTextView
             android:id="@+id/itv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:text="barto@technorides.com"
             android:inputType="textEmailAddress"/>
 
-        <com.apaza.moises.sucreapp.InputTextView
+        <com.apaza.moises.sucreapp.secondrelease.InputTextView
             android:id="@+id/itv_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
