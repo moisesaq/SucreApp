@@ -12,4 +12,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="logout">Logout</string>
+    <string name="title">Title</string>
+    <string name="enter_description_place">Enter description_place</string>
 </resources>
