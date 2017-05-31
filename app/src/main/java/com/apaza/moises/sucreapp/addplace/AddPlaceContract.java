@@ -2,6 +2,8 @@ package com.apaza.moises.sucreapp.addplace;
 
 import android.support.annotation.NonNull;
 
+import java.io.IOException;
+
 public interface AddPlaceContract {
 
     interface View{
@@ -14,7 +16,7 @@ public interface AddPlaceContract {
 
     interface Presenter{
         void savePlace(String title, String description);
-        void takePicture() throws Exception;
+        void takePicture() throws IOException;
         void imageAvailable();
         void imageCaptureFailed();
     }

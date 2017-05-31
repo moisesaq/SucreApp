@@ -6,6 +6,7 @@ import com.apaza.moises.sucreapp.data.Place;
 import com.apaza.moises.sucreapp.data.PlacesRepository;
 import com.apaza.moises.sucreapp.tools.ImageFile;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -43,7 +44,7 @@ public class AddPlacePresenter implements AddPlaceContract.Presenter{
     }
 
     @Override
-    public void takePicture() throws Exception {
+    public void takePicture() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         mImageFile.create(imageFileName, ".jpg");

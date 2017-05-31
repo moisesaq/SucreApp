@@ -23,7 +23,7 @@ android {
 
     productFlavors{
         mock{
-            applicationIdSuffix = ".mock"
+            //applicationIdSuffix = ".mock"
         }
         prod{
 
@@ -58,6 +58,11 @@ dependencies {
     /*INJECTION DEPENDENCY*/
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    /*RETROFIT*/
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

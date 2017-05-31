@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.apaza.moises.sucreapp.Injection;
 import com.apaza.moises.sucreapp.R;
 import com.apaza.moises.sucreapp.addplace.AddPlaceActivity;
 import com.apaza.moises.sucreapp.data.Place;
@@ -47,9 +48,9 @@ public class PlacesFragment extends Fragment implements PlacesContract.View, Pla
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PlacesServiceApiImpl placesServiceApi = new PlacesServiceApiImpl();
+        //PlacesServiceApiImpl placesServiceApi = new PlacesServiceApiImpl();
         mPlacesAdapter = new PlacesAdapter(new ArrayList<Place>(), this);
-        mPresenter = new PlacesPresenter(this, PlaceRepositories.getInstance(placesServiceApi));
+        mPresenter = new PlacesPresenter(this, Injection.providePlacesRepository());
     }
 
     @Nullable
@@ -111,7 +112,7 @@ public class PlacesFragment extends Fragment implements PlacesContract.View, Pla
             @Override
             public void run() {
                 swipeRefreshLayout.setRefreshing(active);
-                Log.d(TAG, " TEST >>>> ????");
+
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.apaza.moises.sucreapp.places;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +56,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewH
 
     public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        @BindView(R.id.tv_place_title)
-        TextView mTitle;
+        @BindView(R.id.tv_place_title) TextView mTitle;
         @BindView(R.id.tv_place_description) TextView mDescription;
 
         private PlaceItemListener mPlaceItemListener;
@@ -65,6 +65,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewH
             super(view);
             ButterKnife.bind(this, view);
             this.mPlaceItemListener = listener;
+            view.setOnClickListener(this);
         }
         @Override
         public void onClick(View view) {

@@ -13,5 +13,12 @@
     <string name="password">Password</string>
     <string name="logout">Logout</string>
     <string name="title">Title</string>
-    <string name="enter_description_place">Enter description_place</string>
+    <string name="enter_description_place">Enter description place</string>
+    <string name="add_picture">Add picture</string>
+    <string name="error_take_picture">Could not take picture</string>
+    <string name="place_cannot_be_empty">Place cannot be empty</string>
+    <string name="cannot_connect_to_camera">Cannot connect to camera</string>
+    <string name="new_place">New place</string>
+    <string name="loading">Loading</string>
+    <string name="no_data">No data</string>
 </resources>
