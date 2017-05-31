@@ -119,7 +119,8 @@ public class PlacesFragment extends Fragment implements PlacesContract.View, Pla
 
     @Override
     public void showPlaces(List<Place> places) {
-        mPlacesAdapter.addItems(places);
+        //mPlacesAdapter.addItems(places);
+        mPlacesAdapter.replaceData(places);
     }
 
     @Override

@@ -54,6 +54,11 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewH
         notifyDataSetChanged();
     }
 
+    public void replaceData(List<Place> places){
+        mPlaceList = places;
+        notifyDataSetChanged();
+    }
+
     public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.tv_place_title) TextView mTitle;

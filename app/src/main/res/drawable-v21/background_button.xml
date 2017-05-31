@@ -4,7 +4,7 @@
     <!--<item android:drawable="?attr/colorPrimary" />-->
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/colorLightPrimaryColor"/>
+            <solid android:color="@color/colorLightPrimary"/>
             <corners android:radius="3dp"/>
             <padding
                 android:right="10dp"

@@ -100,7 +100,7 @@ public class PlaceDetailFragment extends Fragment implements PlaceDetailContract
     @Override
     public void hideImage() {
         mImageView.setImageDrawable(null);
-        mImageView.setVisibility(View.VISIBLE);
+        mImageView.setVisibility(View.GONE);
     }
 
     @Override
