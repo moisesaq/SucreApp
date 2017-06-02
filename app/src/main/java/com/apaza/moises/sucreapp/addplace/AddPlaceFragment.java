@@ -81,7 +81,7 @@ public class AddPlaceFragment extends Fragment implements AddPlaceContract.View{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.take_photo:
+            case R.id.take_picture:
                 try{
                     mPresenter.takePicture();
                 }catch (IOException e){
@@ -91,7 +91,7 @@ public class AddPlaceFragment extends Fragment implements AddPlaceContract.View{
                 }
                 return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @Override

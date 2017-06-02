@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.apaza.moises.sucreapp.addplace.AddPlaceActivity">
     <item
-        android:id="@+id/take_photo"
+        android:id="@+id/take_picture"
         android:title="@string/add_picture"
         app:showAsAction="never" />
 </menu>
