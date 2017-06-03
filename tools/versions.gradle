@@ -1,0 +1,26 @@
+ext {
+    //SDK CONFIGURATIONS
+    compileVersion = 25
+    buildVersion = "25.0.3"
+    minVersion = 19
+    targetVersion = 25
+    defaultVersionCode = 1
+    defaultVersionName = "1.0"
+    freeVersionCode = 1
+    freeVersionName = "1.0"
+    premiumVersionCode = 1
+    premiunVersionName = "1.0"
+
+    //DEPENDENCIES
+    espressoVersion = '2.2.2'
+    junitVersion = '4.12'
+    appCompatVersion = '25.3.1'
+    mapsVersion = '10.2.6'
+    daggerVersion = '2.10'
+    rxJavaVersion = '2.0.1'
+    rxBindingVersion = '2.0.0'
+    butterKnifeVersion = '8.1.0'
+    gsonVersion = '2.1.0'
+    loggingInterceptorVersion = '3.5.0'
+    retrofitRxJava2AdapterVersion = '1.0.0'
+}

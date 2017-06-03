@@ -1,20 +1,26 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'com.jakewharton.butterknife'
 
+apply from: "$project.rootDir/tools/versions.gradle"
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion compileVersion
+    buildToolsVersion buildVersion
 
     defaultConfig {
         applicationId "com.apaza.moises.sucreapp"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode defaultVersionCode
+        versionName defaultVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -22,28 +28,31 @@ android {
     }
 
     productFlavors{
-        mock{
-            //applicationIdSuffix = ".mock"
+        free{
+            applicationIdSuffix = ".free"
         }
-        prod{
-
+        premium{
+            applicationIdSuffix = ".premium"
         }
     }
 
     // Remove mockRelease as it's not needed.
-    android.variantFilter { variant ->
+    /*android.variantFilter { variant ->
         if(variant.buildType.name.equals('release')
                 && variant.getFlavors().get(0).name.equals('mock')) {
             variant.setIgnore(true);
         }
-    }
+    }*/
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    //UNIT TEST
+    testCompile 'junit:junit:'+junitVersion
+
+    //SUPPORT LIBRARY
+    compile 'com.android.support:appcompat-v7:'+appCompatVersion
+    compile 'com.android.support:design:'+appCompatVersion
 
     compile 'com.google.firebase:firebase-database:9.6.1'
     compile 'com.google.firebase:firebase-storage:9.6.1'
@@ -52,6 +61,11 @@ dependencies {
 
     /*LOGIN FACEBOOK*/
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+    /*RETROFIT*/
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
     /*DEPENDENCIES FOR LOCAL UNIT TESTS*/
     testCompile 'org.hamcrest:hamcrest-library:1.3'
@@ -63,10 +77,14 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
-    /*RETROFIT*/
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    // DAGGER 2
+    compile 'com.google.dagger:dagger-android-support:'+daggerVersion
+    annotationProcessor 'com.google.dagger:dagger-compiler:'+daggerVersion
+
+    // RxJava & RxAndroid & RxBinding
+    compile 'io.reactivex.rxjava2:rxandroid:'+rxJavaVersion
+    compile 'io.reactivex.rxjava2:rxjava:'+rxJavaVersion
+    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:'+rxBindingVersion
 }
 
 apply plugin: 'com.google.gms.google-services'
