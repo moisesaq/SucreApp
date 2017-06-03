@@ -3,8 +3,8 @@
     package="com.apaza.moises.sucreapp">
 
     <application
-        android:name=".secondrelease.SucreApp"
-        android:allowBackup="true"
+        android:name=".ui.base.AppBase"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"

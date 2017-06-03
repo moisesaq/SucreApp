@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "554658342509",
+    "firebase_url": "https://sucreapp-f4c5b.firebaseio.com",
+    "project_id": "sucreapp-f4c5b",
+    "storage_bucket": "sucreapp-f4c5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554658342509:android:53b54dbc045755b6",
+        "android_client_info": {
+          "package_name": "com.apaza.moises.sucreapp.premium"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554658342509-1hbceqvtvfs1nethpbcjabd3lg8gij2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apaza.moises.sucreapp",
+            "certificate_hash": "9360A29D2F05E575F5E660D1FDF324FD89D7EDE8"
+          }
+        },
+        {
+          "client_id": "554658342509-le83bm1d2d24vkgds8h0ijnguhgsfgtc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdnZJ0xlid6YlCti7W7YtvhVrzue48dgk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554658342509-le83bm1d2d24vkgds8h0ijnguhgsfgtc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

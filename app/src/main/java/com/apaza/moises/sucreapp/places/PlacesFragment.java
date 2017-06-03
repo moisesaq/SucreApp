@@ -80,7 +80,7 @@ public class PlacesFragment extends Fragment implements PlacesContract.View, Pla
             @Override
             public void onRefresh() {
                 mPresenter.loadPlaces(true);
-                Utils.showToast("Refresh");
+                //Utils.showToast("Refresh");
             }
         });
     }

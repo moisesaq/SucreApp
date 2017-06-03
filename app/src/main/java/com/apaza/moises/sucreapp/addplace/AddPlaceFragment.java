@@ -22,9 +22,6 @@ import android.widget.ImageView;
 
 import com.apaza.moises.sucreapp.Injection;
 import com.apaza.moises.sucreapp.R;
-import com.apaza.moises.sucreapp.data.PlaceRepositories;
-import com.apaza.moises.sucreapp.data.PlacesServiceApi;
-import com.apaza.moises.sucreapp.data.PlacesServiceApiImpl;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

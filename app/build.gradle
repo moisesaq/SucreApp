@@ -14,24 +14,27 @@ android {
         versionCode defaultVersionCode
         versionName defaultVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
-        debug{
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //applicationIdSuffix = ".debug"
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //applicationIdSuffix = ".release"
         }
     }
 
-    productFlavors{
-        free{
+    productFlavors {
+        free {
             applicationIdSuffix = ".free"
         }
-        premium{
+        premium {
             applicationIdSuffix = ".premium"
         }
     }
@@ -43,16 +46,47 @@ android {
             variant.setIgnore(true);
         }
     }*/
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
+        javaMaxHeapSize '2g'
+    }
+
+    /*compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }*/
+
+    List<String> activities = ['places', 'addplaces', 'placedetail']
+    sourceSets {
+        main{
+            activities.each {activity -> res.srcDirs "src/main/res-screen/${activity}"}
+        }
+        free {
+            java.srcDirs = ['src/free/java', 'src/free/java/']
+        }
+        premium {
+            java.srcDirs = ['src/premium/java', 'src/premium/java/']
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //UNIT TEST
-    testCompile 'junit:junit:'+junitVersion
+    testCompile 'junit:junit:' + junitVersion
 
     //SUPPORT LIBRARY
-    compile 'com.android.support:appcompat-v7:'+appCompatVersion
-    compile 'com.android.support:design:'+appCompatVersion
+    compile 'com.android.support:appcompat-v7:' + appCompatVersion
+    compile 'com.android.support:design:' + appCompatVersion
 
     compile 'com.google.firebase:firebase-database:9.6.1'
     compile 'com.google.firebase:firebase-storage:9.6.1'
@@ -78,13 +112,13 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     // DAGGER 2
-    compile 'com.google.dagger:dagger-android-support:'+daggerVersion
-    annotationProcessor 'com.google.dagger:dagger-compiler:'+daggerVersion
+    compile 'com.google.dagger:dagger-android-support:' + daggerVersion
+    annotationProcessor 'com.google.dagger:dagger-compiler:' + daggerVersion
 
     // RxJava & RxAndroid & RxBinding
-    compile 'io.reactivex.rxjava2:rxandroid:'+rxJavaVersion
-    compile 'io.reactivex.rxjava2:rxjava:'+rxJavaVersion
-    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:'+rxBindingVersion
+    compile 'io.reactivex.rxjava2:rxandroid:' + rxJavaVersion
+    compile 'io.reactivex.rxjava2:rxjava:' + rxJavaVersion
+    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:' + rxBindingVersion
 }
 
 apply plugin: 'com.google.gms.google-services'
