@@ -1,8 +1,8 @@
-package com.apaza.moises.sucreapp.addplace;
+package com.apaza.moises.sucreapp.ui.addplace;
 
 import com.apaza.moises.sucreapp.data.Place;
 import com.apaza.moises.sucreapp.data.PlacesRepository;
-import com.apaza.moises.sucreapp.tools.ImageFile;
+import com.apaza.moises.sucreapp.utils.ImageFile;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,14 +12,13 @@ import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class AddPlacePresenterTest {
+public class AddPlaceFragmentPresenterTest {
 
     @Mock
     private PlacesRepository mPlacesRepository;

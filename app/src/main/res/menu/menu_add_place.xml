@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.apaza.moises.sucreapp.addplace.AddPlaceActivity">
+    tools:context=".ui.addplace.AddPlaceActivity">
     <item
         android:id="@+id/take_picture"
         android:title="@string/add_picture"

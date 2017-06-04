@@ -24,8 +24,8 @@ public class AppBase extends Application implements HasDispatchingActivityInject
         DaggerComponentApp
                 .builder()
                 .application(this)
-                .build();
-                //.inject(this);
+                .build()
+                .inject(this);
     }
 
     @Override

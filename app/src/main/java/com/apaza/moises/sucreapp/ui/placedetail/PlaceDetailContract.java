@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp.placedetail;
+package com.apaza.moises.sucreapp.ui.placedetail;
 
 import android.support.annotation.NonNull;
 

@@ -1,4 +1,4 @@
-package com.apaza.moises.sucreapp.addplace;
+package com.apaza.moises.sucreapp.ui.addplace;
 
 import android.app.Activity;
 import android.content.Intent;

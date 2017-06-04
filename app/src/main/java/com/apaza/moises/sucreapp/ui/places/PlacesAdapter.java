@@ -1,7 +1,6 @@
-package com.apaza.moises.sucreapp.places;
+package com.apaza.moises.sucreapp.ui.places;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,15 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewH
         this.mPlaceList = places;
         mPlaceItemListener = itemListener;
     }
+
+    public PlacesAdapter(List<Place> places){
+        this.mPlaceList = places;
+    }
+
+    public void setPlaceItemListener(PlaceItemListener listener){
+        mPlaceItemListener = listener;
+    }
+
     @Override
     public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View placeView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_place, parent, false);
@@ -74,7 +82,8 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceViewH
         }
         @Override
         public void onClick(View view) {
-            mPlaceItemListener.onPlaceClick(getItem(getAdapterPosition()));
+            if(mPlaceItemListener != null)
+                mPlaceItemListener.onPlaceClick(getItem(getAdapterPosition()));
         }
     }
 

@@ -1,5 +1,6 @@
 package com.apaza.moises.sucreapp.di.app;
 
+import com.apaza.moises.sucreapp.di.places.ModuleActivityPlaces;
 import com.apaza.moises.sucreapp.ui.base.AppBase;
 
 import javax.inject.Singleton;
@@ -8,7 +9,7 @@ import dagger.BindsInstance;
 import dagger.Component;
 
 @Singleton
-@Component(modules = ModuleApp.class)
+@Component(modules = { ModuleApp.class, ModuleActivityPlaces.class})
 public interface ComponentApp {
     @Component.Builder
     interface Builder{
@@ -17,5 +18,5 @@ public interface ComponentApp {
         ComponentApp build();
     }
 
-    //void inject(AppBase appBase);
+    void inject(AppBase appBase);
 }

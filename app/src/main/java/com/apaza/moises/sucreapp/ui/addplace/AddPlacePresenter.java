@@ -1,10 +1,10 @@
-package com.apaza.moises.sucreapp.addplace;
+package com.apaza.moises.sucreapp.ui.addplace;
 
 import android.support.annotation.NonNull;
 
 import com.apaza.moises.sucreapp.data.Place;
 import com.apaza.moises.sucreapp.data.PlacesRepository;
-import com.apaza.moises.sucreapp.tools.ImageFile;
+import com.apaza.moises.sucreapp.utils.ImageFile;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

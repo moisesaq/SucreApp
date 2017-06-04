@@ -1,12 +1,10 @@
-package com.apaza.moises.sucreapp.places;
+package com.apaza.moises.sucreapp.ui.places;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,12 +15,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.apaza.moises.sucreapp.R;
+import com.apaza.moises.sucreapp.data.Place;
+import com.apaza.moises.sucreapp.ui.addplace.AddPlaceActivity;
+import com.apaza.moises.sucreapp.ui.placedetail.PlaceDetailActivity;
 
-public class PlacesActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasDispatchingSupportFragmentInjector;
+
+public class PlacesActivity extends AppCompatActivity implements PlacesContract.ActivityView, HasDispatchingSupportFragmentInjector, NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject DispatchingAndroidInjector<Fragment> injector;
+    @Inject PlacesContract.ActivityPresenter mActivityPresenter;
+    public static final int REQUEST_ADD_PLACE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places);
 
@@ -37,17 +48,7 @@ public class PlacesActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        if(savedInstanceState == null){
-            initFragment(PlacesFragment.newInstance());
-        }
-    }
-
-    private void initFragment(Fragment fragment) {
-        // Add the NotesFragment to the layout
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.content_places, fragment);
-        transaction.commit();
+        mActivityPresenter.onActivityCreated();
     }
 
     @Override
@@ -58,22 +59,6 @@ public class PlacesActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.places, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -99,5 +84,36 @@ public class PlacesActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
+        return injector;
+    }
+
+
+    /*LISTENER ACTIVITY VIEW*/
+    @Override
+    public void startAddPlaceActivity() {
+        startActivityForResult(new Intent(this, AddPlaceActivity.class), REQUEST_ADD_PLACE);
+    }
+
+    @Override
+    public void startDetailPlaceActivity(Place place) {
+        Intent intent = new Intent(this, PlaceDetailActivity.class);
+        intent.putExtra(PlaceDetailActivity.EXTRA_PLACE_ID, place.getId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void addFragment(Fragment fragment) {
+        initFragment(fragment);
+    }
+
+    private void initFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.content_places, fragment);
+        transaction.commit();
     }
 }
