@@ -1,9 +1,9 @@
 ext {
     //SDK CONFIGURATIONS
-    compileVersion = 25
+    /*compileVersion = 25
     buildVersion = "25.0.3"
     minVersion = 19
-    targetVersion = 25
+    targetVersion = 25*/
     defaultVersionCode = 1
     defaultVersionName = "1.0"
     freeVersionCode = 1

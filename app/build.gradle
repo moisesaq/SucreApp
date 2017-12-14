@@ -4,13 +4,13 @@ apply plugin: 'com.jakewharton.butterknife'
 apply from: "$project.rootDir/tools/versions.gradle"
 
 android {
-    compileSdkVersion compileVersion
-    buildToolsVersion buildVersion
+    compileSdkVersion 27
+    buildToolsVersion '27.0.0'
 
     defaultConfig {
         applicationId "com.apaza.moises.sucreapp"
-        minSdkVersion minVersion
-        targetSdkVersion targetVersion
+        minSdkVersion 19
+        targetSdkVersion 27
         versionCode defaultVersionCode
         versionName defaultVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,11 +30,15 @@ android {
         }
     }
 
+    flavorDimensions 'env'
+
     productFlavors {
         free {
+            dimension 'env'
             applicationIdSuffix = ".free"
         }
         premium {
+            dimension 'env'
             applicationIdSuffix = ".premium"
         }
     }
@@ -77,6 +81,7 @@ android {
             java.srcDirs = ['src/premium/java', 'src/premium/java/']
         }
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -85,13 +90,13 @@ dependencies {
     testCompile 'junit:junit:' + junitVersion
 
     //SUPPORT LIBRARY
-    compile 'com.android.support:appcompat-v7:' + appCompatVersion
-    compile 'com.android.support:design:' + appCompatVersion
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:design:27.0.2'
 
-    compile 'com.google.firebase:firebase-database:9.6.1'
-    compile 'com.google.firebase:firebase-storage:9.6.1'
-    compile 'com.google.firebase:firebase-auth:9.6.1'
-    compile 'com.google.android.gms:play-services-auth:9.6.1'
+    compile 'com.google.firebase:firebase-database:11.6.2'
+    compile 'com.google.firebase:firebase-storage:11.6.2'
+    compile 'com.google.firebase:firebase-auth:11.6.2'
+    compile 'com.google.android.gms:play-services-auth:11.6.2'
 
     /*LOGIN FACEBOOK*/
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
